@@ -3,19 +3,9 @@ const {mainProduct} = require('./mainProduct.js');
 const {photos} = require('./mainProduct.js')
 var faker = require('faker');
 const mongoose = require('mongoose');
-var async = require('async');
 var Schema = mongoose.Schema;
 
-// MAIN PRODUCT FAKE DATA
-
-
-
-// PHOTOS FAKE DATA
-
-var randomPhotoUrl = faker.image.imageUrl(); // https://aws.photo.com
-
-// seed main product table
-
+// FUNCTION TO SEED MAIN PRODUCT 
 let seedMainProduct = function () {
     var promisearr = [];
 
@@ -45,6 +35,7 @@ let seedMainProduct = function () {
     return Promise.all(promisearr).catch(err => console.log(err))
 };
 
+// FUNCTION TO SEED PHOTOS
 let seedPhotos = function() {
     var promisearr = [];
 
@@ -59,6 +50,7 @@ let seedPhotos = function() {
     return Promise.all(promisearr).catch(err => console.log(err, 'error from seedPhotos'))
 }
 
+// DROP DB IF EXISTS
 mainProduct.db.dropDatabase(function(err, results) {
     if(err) {
         console.log(err, 'error from dropdb')
@@ -67,14 +59,16 @@ mainProduct.db.dropDatabase(function(err, results) {
     }
 })
 
+// COMMAND TO SEED MAIN PRODUCTS TABLE
 const insertSampleProducts = function() {
-  mainProduct.create(seedMainProduct())
-    .then(() => db.close())
-    .catch(err => console.log(err, 'err from insertSampleProducts'))
+    mainProduct.create(seedMainProduct())
+        .then(() => db.close())
+        .catch(err => console.log(err, 'err from insertSampleProducts'))
 };
 
 insertSampleProducts();
 
+// COMMAND TO SEED PHOTOS TABLE
 const insertSamplePhotos = function() {
     photos.create(seedPhotos())
         .then(() => db.close())
@@ -82,4 +76,3 @@ const insertSamplePhotos = function() {
 }
 
 insertSamplePhotos()
-// seed photos table
