@@ -76,7 +76,7 @@ const insertSampleProducts = function() {
 insertSampleProducts();
 
 const insertSamplePhotos = function() {
-    photos.insert(seedPhotos())
+    photos.create(seedPhotos())
         .then(() => db.close())
         .catch(err => console.log(err, 'err from insertSamplePhotos'))
 }
