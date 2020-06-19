@@ -19,18 +19,16 @@ const mainProductSchema = new mongoose.Schema({
 
 const mainProduct = mongoose.model('mainProduct', mainProductSchema);
 
-module.exports = mainProduct;
-
 // photos Schema 
 
-// const photosSchema = new mongoose.Schema({
-//   photo_id: Schema.Types.ObjectId,
-//   product_id: [
-//     {type: mongoose.Schema.Types.ObjectId, ref: 'mainProduct'}
-//   ]
-//   photo_url: String
-// })
+const photosSchema = new mongoose.Schema({
+  photo_id: Schema.Types.ObjectId,
+  product_id: [
+    {type: mongoose.Schema.Types.ObjectId, ref: 'mainProduct'}
+  ],
+  photo_url: String
+})
 
-// const photos = mongoose.model('photos', photosSchema);
+const photos = mongoose.model('photos', photosSchema);
 
-// module.exports = photos;
+module.exports = {mainProduct, photos};
