@@ -11,6 +11,7 @@ let seedMainProduct = function () {
 
         for (var i = 0; i < 100; i++) {
 
+            let randomAnswers = faker.commerce.number(): // 3
             let randomCategory = faker.commerce.department(); // Clothing
             let randomCompany = faker.company.companyName(); // Apple Inc.
             let randomDescription = faker.image.abstract(); // image description
@@ -19,8 +20,10 @@ let seedMainProduct = function () {
             let randomRating = faker.random.number(); // 4
             let randomTitle = faker.commerce.productName(); // Swimming Pool
             let randomBestSeller = faker.random.boolean(); // false
+            let randomAmazonChoice = faker.random.boolean() // true 
 
             let mainproduct = new mainProduct({
+                answers: `${randomAnswers}`
                 category: `${randomCategory}`,
                 company: `${randomCompany}`,
                 description: `${randomDescription}`,
@@ -28,7 +31,8 @@ let seedMainProduct = function () {
                 prime: `${randomPrime}`,
                 ratings: `${randomRating}`,
                 title: `${randomTitle}`,
-                best_seller: `${randomBestSeller}`
+                best_seller: `${randomBestSeller}`,
+                amazon_choice: `${randomAmazonChoice}`
             }).save()
             promisearr.push(mainproduct)
         }

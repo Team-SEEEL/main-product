@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import App from '../client/src/components/App.jsx';
 
 // test for reviews
@@ -23,3 +24,4 @@ describe('<mainProduct />', () => {
       expect(wrapper.find('.mainProduct').exists()).toBe(true);
     });
   });
+
