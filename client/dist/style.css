@@ -1,0 +1,7 @@
+.flex-container {
+  display: flex;
+}
+
+.photo-item {
+  max-width: 25%;
+}

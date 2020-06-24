@@ -2,10 +2,11 @@ import React from 'react';
 
 const Photo = (props) => {
     const photo = props.photo;
+    const hoverHandler = props.hoverHandler;
 
     return (
         <li className="photo">
-            <img src={photo.imageUrl} className="photo-item"/>
+            <img src={photo} className="photo-item" onMouseEnter={hoverHandler}/>
         </li> 
 
     )

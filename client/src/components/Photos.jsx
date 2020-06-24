@@ -3,13 +3,15 @@ import Photo from './Photo.jsx'
 
 const Photos = (props) => {
     let photos = props.photos;
+    let hoverHandler = props.hoverHandler;
+    console.log(photos, 'line 6 from Photos.jsx')
 
     return (
     <div className="photos">
       <ul>
         {
           photos.map((photo) => {
-            return <Photo key={photos._id} photo={photo} />
+            return <Photo hoverHandler={hoverHandler} photo={photo} />
           })
         }
       </ul>
