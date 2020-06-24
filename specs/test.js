@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import App from '../client/src/components/App.jsx';
+import { expect } from 'chai';
 
 // test for reviews
 
@@ -25,3 +26,11 @@ describe('<mainProduct />', () => {
     });
   });
 
+describe('API photo routes test', () => {
+    test('Ajax request to endpoint /api/photos should return data', () => {
+        return axios.get('http://localhost:3000/api/photos')
+        .then((results) => {
+            expect(results.data).to.be.greaterThan.length(0);
+        })
+    })
+})

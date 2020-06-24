@@ -11,7 +11,7 @@ let seedMainProduct = function () {
 
         for (var i = 0; i < 100; i++) {
 
-            let randomAnswers = faker.commerce.number(): // 3
+            let randomAnswers = faker.commerce.number(); // 3
             let randomCategory = faker.commerce.department(); // Clothing
             let randomCompany = faker.company.companyName(); // Apple Inc.
             let randomDescription = faker.image.abstract(); // image description

@@ -11,7 +11,7 @@
     "start": "nodemon server/index.js",
     "dev:react": "webpack -d --watch",
     "db:setup": "node database/seed.js",
-    "test": "jest --config ./jest.config.json",
+    "test": "jest",
     "test:watch": "npm run test -- --watch"
   },
   "dependencies": {
@@ -43,7 +43,7 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "^2.5.1",
     "express": "^4.15.4",
-    "jest": "^26.0.1",
+    "jest": "^26.1.0",
     "jquery": "^3.5.1",
     "mocha": "^8.0.1",
     "moment": "^2.19.2",

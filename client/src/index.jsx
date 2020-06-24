@@ -5,7 +5,7 @@ class App extends React.Component {
     constructor() {
       super();
       this.state = {
-        
+        // photos: []
       }
 
     }
@@ -16,9 +16,8 @@ class App extends React.Component {
     getBlogPosts() {
       axios.get('/api/blogs').then((data) => {
         console.log(data, "logging data from api blogs call");
-        this.setState({
-          posts: data.data,
-        });
+        // this.setState({
+        // });
       })
     }
   
@@ -37,13 +36,7 @@ class App extends React.Component {
           <div className="nav">
             <span className="logo"
               onClick={() => this.changeView('feed')}>
-              Amazon
-            </span>
-            <span className={this.state.view === 'feed'
-              ? 'nav-selected'
-              : 'nav-unselected'}
-              onClick={() => this.changeView('feed')}>
-              See all Posts
+              Amazon Main Product
             </span>
           </div>
   
@@ -55,5 +48,5 @@ class App extends React.Component {
     }
   }
   
-  ReactDOM.render(<App />, document.getElementById('main-product'));
+ReactDOM.render(<App />, document.getElementById('main-product'));
   
