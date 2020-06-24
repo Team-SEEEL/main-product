@@ -1,38 +1,44 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Photos from './components/Photos.jsx'
+import axios from 'axios'
  
 class App extends React.Component {
     constructor() {
       super();
       this.state = {
-        // photos: []
+        photos: []
       }
+      this.getPhotos = this.getPhotos.bind(this);
 
     }
   
     renderView() {
     }
   
-    getBlogPosts() {
-      axios.get('/api/blogs').then((data) => {
-        console.log(data, "logging data from api blogs call");
-        // this.setState({
-        // });
+    getPhotos() {
+      axios.get('/api/photosurls').then((data) => {
+        console.log(data.data, "logging data from api photos call");
+        // TODO: access string inside object
+        
+          this.setState({
+            photos: data.data
+          });
       })
     }
   
   
-    changeToAdminView() {
-      this.getAdminData();
-    }
   
     componentDidMount() {
-      this.getBlogPosts();
+      this.getPhotos();
     }
   
     render() {
       return (
         <div>
+          <div >
+            <Photos photos={this.state.photos}/>
+          </div>
           <div className="nav">
             <span className="logo"
               onClick={() => this.changeView('feed')}>
