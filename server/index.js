@@ -39,6 +39,14 @@ app.get('/api/photosurls', function(req, res) {
   }).catch((err) => console.log(err, 'err from app.get/api/mainProduct'));
 });
 
+// GET product rating
+app.get('/api/ratings', function(req, res) {
+  mainProduct.find({}).select('ratings')
+    .then((data) => {
+      console.log(data, "logging mainProduct data");
+      res.json(data);
+  }).catch((err) => console.log(err, 'err from app.get/api/mainProduct'));
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

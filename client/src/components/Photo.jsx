@@ -5,9 +5,9 @@ const Photo = (props) => {
     const hoverHandler = props.hoverHandler;
 
     return (
-        <li className="photo">
-            <img src={photo} className="photo-item" onMouseEnter={hoverHandler}/>
-        </li> 
+        <div className="photo">
+            <img className="single-photo" src={photo} onMouseEnter={hoverHandler}/>
+        </div> 
 
     )
 }

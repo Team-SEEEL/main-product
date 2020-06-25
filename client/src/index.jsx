@@ -2,21 +2,37 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Photos from './components/Photos.jsx'
 import Description from './components/Description.jsx'
-import axios from 'axios'
+import Options from './components/Options.jsx'
+import Details from './components/Details.jsx'
+import AddToCart from './components/AddToCart.jsx'
+import AddToList from './components/AddToList.jsx'
+import ShareButtons from './components/ShareButtons.jsx'
+import QuantityMenu from './components/QuantityMenu.jsx'
+import StarRatingComponent from 'react-star-rating-component';
+import axios from 'axios';
+import primeLogo from '../dist/primelogo.png'
  
 class App extends React.Component {
     constructor() {
       super();
       this.state = {
         photos: [],
-        mainphoto: ''
+        mainphoto: '',
+        rating: 4.5,
+        selectedoption: '',
+        selectValue: ''
       }
       this.getPhotos = this.getPhotos.bind(this);
       this.hoverHandler = this.hoverHandler.bind(this);
-
+      this.hoverOptionHandler = this.hoverOptionHandler.bind(this);
+      this.handleQuantityChange = this.handleQuantityChange.bind(this);
     }
   
     renderView() {
+    }
+
+    getRating() {
+
     }
   
     getPhotos() {
@@ -36,20 +52,33 @@ class App extends React.Component {
     }
   
     hoverHandler(e) {
-      console.log(e.currentTarget.src, 'line 39')
       let currentPhoto = e.currentTarget.src
-      // set state for mainphoto
       this.setState({
         mainphoto: currentPhoto
       })
     }
+
+    handleQuantityChange(e){
+      this.setState({
+        selectValue: e.target.value
+      });
+    }
+
+    hoverOptionHandler(e) {
+      console.log(e.target.value, 'logging from hoverOptionHandler')
+
+    }
   
     componentDidMount() {
       this.getPhotos();
+      this.setState({
+        mainPhoto: this.state.photos[0]
+      })
     }
 
   
     render() {
+      const { rating } = this.state;
       return (
         <div className="flex-container">
           <div className="photos">
@@ -59,20 +88,26 @@ class App extends React.Component {
             <img src={this.state.mainphoto}/>
           </div>
           <div className="description">
-            <div className="title">Apple Airpods Pro (Title)</div>
-            <div>Ratings | Answers</div>
-            <div>Price</div>
-            <div>Options</div>
-            <div>Description</div>
+            <div className="product-title">Apple Airpods Pro</div>
+            <div className="company">by Apple</div>
+            <div className="ratings"><StarRatingComponent 
+          starCount={5}
+          value={rating}
+            /> | 987 answered questions</div>
+            <div className="price">
+            Price: $229
+             <img className="prime-logo" src={primeLogo} />
+            </div>
+            <div className="options"><Options hoverOptionHandler={this.hoverOptionHandler}/></div>
+            <div className="details"><Details /></div>
+            <div className="about-item"><b><font size="+1">About This Item:</font></b>
+            <Description /></div>
           </div>
           <div className="buying-options">
-            <div>Buying Options</div>
-            <div>Add to Cart</div>
-            <div>Buy Now</div>
-            <div>Gift Options & Accessories</div>
-            <div>Add to List</div>
-            <div>Other Sellers on Amazon</div>
-            <div>New & Used</div>
+            <div className="share">Share: <ShareButtons /></div>
+            <div className="Quantitymenu"> <QuantityMenu selectValue={this.state.selectValue} handleQuantityChange={this.handleQuantityChange}/> </div>
+            <div><AddToCart /></div>
+            <div><AddToList /></div>
           </div>
         </div>
       );
