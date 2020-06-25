@@ -7,6 +7,7 @@ var Schema = mongoose.Schema;
 
 const mainProductSchema = new mongoose.Schema({
   product_id: Schema.ObjectId,
+  // answers: Number,
   category: String,
   company: String,
   description: String,
@@ -15,6 +16,7 @@ const mainProductSchema = new mongoose.Schema({
   ratings: Number,
   title: String,
   best_seller: Boolean
+  // amazon_choice: Boolean
 });
 
 const mainProduct = mongoose.model('mainProduct', mainProductSchema);
