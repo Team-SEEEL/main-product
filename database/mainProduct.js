@@ -21,7 +21,6 @@ const mainProductSchema = new mongoose.Schema({
 
 const mainProduct = mongoose.model('mainProduct', mainProductSchema);
 
-
 // photos Schema 
 
 const photosSchema = new mongoose.Schema({
@@ -35,6 +34,3 @@ const photosSchema = new mongoose.Schema({
 const photos = mongoose.model('photos', photosSchema);
 
 module.exports = {mainProduct, photos};
-
-
-// TODO: wishlist Schema 
