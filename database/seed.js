@@ -11,13 +11,20 @@ let seedMainProduct = function () {
 
         for (var i = 0; i < 100; i++) {
 
-            let randomAnswers = faker.random.number(); // 3
+            let randomAnswers = faker.random.number({
+                'min' : 10,
+                'max' : 1200
+            }); // 3
             let randomCategory = faker.commerce.department(); // Clothing
             let randomCompany = faker.company.companyName(); // Apple Inc.
             let randomDescription = faker.image.abstract(); // image description
             let randomPrice = faker.commerce.price(); // $1.00
             let randomPrime = faker.random.boolean(); // true
-            let randomRating = faker.random.number(); // 4
+            let randomRating = faker.random.number({
+                'min' : 1,
+                'max' : 5
+                }
+            ); // 4
             let randomTitle = faker.commerce.productName(); // Swimming Pool
             let randomBestSeller = faker.random.boolean(); // false
             let randomAmazonChoice = faker.random.boolean() // true 

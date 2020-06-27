@@ -9,14 +9,22 @@
 }
 
 .single-photo {
-  width: 50px;
+  max-width: 50px;
   height: auto;
   margin: 10px, 10px;
+  object-fit: cover;
+  float: left;
 }
 
 .photos {
   flex-shrink: 3;
   max-width: 10%;
+  display: flex;
+}
+
+.description {
+  flex-grow: 1;
+  max-width: 100%;
 }
 
 /* .single-photo {
@@ -24,17 +32,17 @@
 } */
 
 .prime-logo {
-  max-width: 12%
+  max-width: 18%
 }
 
 .add-to-cart-button {
-  max-width: 50%;
+  max-width: 60%;
   height: auto;
 }
 
 .main-photo {
   flex-shrink: 2;
-  margin: 30px, 30px;
+  margin: 50px, 50px;
 }
 
 .company, .ratings, .price, .options, .brand, .about-item, .connection, .model-name, .color, .material, .share {
@@ -42,18 +50,27 @@
   font-family: Arial;
 }
 
+.ratings, .share, .company {
+  color: blue
+}
+
 .email-button {
-  max-width: 2%;
+  max-width: 4%;
 }
 
 .facebook-button {
-  max-width: 2%;
+  max-width: 4%;
 }
 
 .twitter-button {
-  max-width: 2%;
+  max-width: 4%;
 }
 
 .pinterest-button {
-  max-width: 2%;
+  max-width: 4%;
+}
+
+.buying-options {
+  flex-shrink: 1.5;
+  border: 1px solid black;
 }

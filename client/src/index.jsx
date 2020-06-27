@@ -44,7 +44,8 @@ class App extends React.Component {
         photourldata.forEach(element => {photourlarray.push(element.photo_url)
         console.log(photourlarray, 'logging data from photourldata line 26')
         });
-        photourlarray = photourlarray.slice(0, 14)
+        // TODO: refactor filter method of getting correct urls
+        photourlarray = photourlarray.slice(102, 112)
           this.setState({
             photos: photourlarray
           });
@@ -89,24 +90,32 @@ class App extends React.Component {
           </div>
           <div className="description">
             <div className="product-title">Apple Airpods Pro</div>
-            <div className="company">by Apple</div>
+            <div className="company">Apple</div>
             <div className="ratings"><StarRatingComponent 
           starCount={5}
           value={rating}
-            /> | 987 answered questions</div>
+            /> 17,034 ratings | 987 answered questions</div>
+            <hr />
             <div className="price">
-            Price: $229
+            Price: $229.99
              <img className="prime-logo" src={primeLogo} />
             </div>
+            <br></br>
             <div className="options"><Options hoverOptionHandler={this.hoverOptionHandler}/></div>
+            <br></br>
             <div className="details"><Details /></div>
+            <hr />
+            <br></br>
             <div className="about-item"><b><font size="+1">About This Item:</font></b>
             <Description /></div>
           </div>
           <div className="buying-options">
             <div className="share">Share: <ShareButtons /></div>
+            <br></br>
             <div className="Quantitymenu"> <QuantityMenu selectValue={this.state.selectValue} handleQuantityChange={this.handleQuantityChange}/> </div>
+            <br></br>
             <div><AddToCart /></div>
+            <br></br>
             <div><AddToList /></div>
           </div>
         </div>
