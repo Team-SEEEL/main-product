@@ -3,7 +3,6 @@ import React from 'react'
 const Description = (props) => {
 
 return (
-    
     <div className="description">
         <li>Active noise cancellation for immersive sound</li>
         <li>Transparency mode for hearing and connecting with the world around you</li>
