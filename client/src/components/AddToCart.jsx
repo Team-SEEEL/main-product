@@ -5,7 +5,10 @@ const AddToCart = (props) => {
 
     return (
         <div>
-            <button><img className="add-to-cart-button" src={addToCartLogo}/></button>
+            {/* <button><img className="add-to-cart-button" src={addToCartLogo}/></button> */}
+            <button>
+                Add to Cart
+            </button>
         </div>
     )
 }

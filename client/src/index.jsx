@@ -6,9 +6,11 @@ import Description from './components/Description.jsx'
 // import Options from './components/Options.jsx'
 import Company from './components/Company.jsx'
 import Details from './components/Details.jsx'
+import Modal from './components/Modal.jsx'
 import AddToCart from './components/AddToCart.jsx'
 import AddToList from './components/AddToList.jsx'
 import ShareButtons from './components/ShareButtons.jsx'
+import MainPhoto from './components/MainPhoto.jsx'
 import QuantityMenu from './components/QuantityMenu.jsx'
 import StarRatingComponent from 'react-star-rating-component';
 import axios from 'axios';
@@ -19,6 +21,8 @@ class App extends React.Component {
       super();
       this.state = {
         isHovered: false,
+        modalOpened: false,
+        showingModal: false,
         photos: [],
         mainphoto: '',
         rating: 4.5,
@@ -28,8 +32,11 @@ class App extends React.Component {
       this.getPhotos = this.getPhotos.bind(this);
       this.hoverExit = this.hoverExit.bind(this);
       this.hoverHandler = this.hoverHandler.bind(this);
+      this.handleModal = this.handleModal.bind(this);
       this.hoverOptionHandler = this.hoverOptionHandler.bind(this);
       this.handleQuantityChange = this.handleQuantityChange.bind(this);
+      this.showModal = this.showModal.bind(this);
+      this.hideModal = this.hideModal.bind(this);
     }
   
     renderView() {
@@ -53,6 +60,27 @@ class App extends React.Component {
           this.setState({
             photos: photourlarray
           });
+      })
+    }
+
+    handleModal(e) {
+      console.log('we out here in handleModal, line 62')
+      this.setState({
+        isHovered: true,
+        modalOpened: true
+      })
+    }
+
+    showModal () {
+      this.setState({
+        showingModal: !this.state.showingModal
+      })
+      console.log('logging from showModal, line 77')
+    }
+
+    hideModal () {
+      this.setState({
+        showingModal: false
       })
     }
   
@@ -88,8 +116,10 @@ class App extends React.Component {
       this.setState({
         mainPhoto: this.state.photos[0]
       })
+      if (this.state.isHovered) {
+        this.showModal()
+      }
     }
-
   
     render() {
       const { rating } = this.state;
@@ -99,7 +129,11 @@ class App extends React.Component {
             <Photos currentPhoto={this.state.mainphoto} hoverHandler={this.hoverHandler} hoverExit={this.hoverExit} isHovered={this.state.isHovered} photos={this.state.photos}/>
           </div>
           <div className='main-photo'>
-            <img className='main-state-photo' src={this.state.mainphoto}/>
+            <div className='main-photo-div'>
+              <MainPhoto showingModal={this.state.showingModal} hideModal={this.hideModal} showModal={this.showModal} modalOpened={this.state.modalOpened} mainPhoto={this.state.mainphoto} handleModal={this.handleModal}/>
+              <Modal mainPhoto={this.state.mainphoto} onClose={this.showModal} showingModal={this.state.showingModal}>
+              </Modal>
+            </div>
           </div>
           <div className="description">
             <div className="product-title">Apple Airpods Pro</div>
@@ -116,6 +150,8 @@ class App extends React.Component {
             {/* <div className="options"><Options hoverOptionHandler={this.hoverOptionHandler}/></div>
             <br></br> */}
             <div className="in-stock">In Stock.</div>
+            <br></br>
+            <div className="free-delivery">FREE delivery</div>
             <br></br>
             <div className="shipping-details">Ships from and sold by Amazon.com</div>
             <br></br>

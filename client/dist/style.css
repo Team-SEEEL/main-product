@@ -63,6 +63,8 @@
   margin-left: 60px;
   opacity: 1.0;
   transition: opacity 0.5s;
+  max-width: 522px;
+  width: 522px;
 }
 
 .add-to-dash, .in-stock, .company, .company-title, .ratings, .price, .options, .brand, .about-item, .connection, .model-name, .color, .material, .share {
@@ -100,7 +102,7 @@
   font-size: 17px;
 }
 
-.company-title, .price, .shipping-details {
+.company-title, .price, .shipping-details, .free-delivery {
   font-size: 13px;
   font-family: Arial;
 }
@@ -110,16 +112,17 @@
   text-align: center;
 }
 
-.brand, .connection, .model-name, .color, .material, .price {
+.brand, .connection, .model-name, .color, .material, .price, .free-delivery {
   font-size: 13px;
 }
 
 .in-stock {
   font-size: 17px!important;
   color: #007600!important;
+  line-height: 1.255!important;
 }
 
-.main-state-photo {
+.main-state-photo, .modal-image {
   max-width: 522px;
   max-height: 446px;
 }
@@ -141,4 +144,16 @@
 .amazon-card-price {
   font-weight: 700!important;
   color: rgb(0, 102, 192);
+}
+
+/* .display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+} */
+
+.main-photo-div {
+  max-width: 522px;
 }
