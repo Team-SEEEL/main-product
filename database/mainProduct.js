@@ -15,7 +15,7 @@ const mainProductSchema = new mongoose.Schema({
   prime: Boolean,
   ratings: Number,
   title: String,
-  best_seller: Boolean,
+  // best_seller: Boolean,
   amazon_choice: Boolean
 });
 
@@ -30,11 +30,8 @@ const photosSchema = new mongoose.Schema({
     {type: mongoose.Schema.Types.ObjectId, ref: 'mainProduct'}
   ],
   photo_url: String
-})
+});
 
 const photos = mongoose.model('photos', photosSchema);
 
 module.exports = {mainProduct, photos};
-
-
-// TODO: wishlist Schema 

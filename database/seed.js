@@ -26,7 +26,7 @@ let seedMainProduct = function () {
                 }
             ); // 4
             let randomTitle = faker.commerce.productName(); // Swimming Pool
-            let randomBestSeller = faker.random.boolean(); // false
+            // let randomBestSeller = faker.random.boolean(); // false
             let randomAmazonChoice = faker.random.boolean() // true 
 
             let mainproduct = new mainProduct({
@@ -38,7 +38,7 @@ let seedMainProduct = function () {
                 prime: `${randomPrime}`,
                 ratings: `${randomRating}`,
                 title: `${randomTitle}`,
-                best_seller: `${randomBestSeller}`,
+                // best_seller: `${randomBestSeller}`,
                 amazon_choice: `${randomAmazonChoice}`
             }).save()
             promisearr.push(mainproduct)

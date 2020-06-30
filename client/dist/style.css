@@ -47,7 +47,8 @@
 } */
 
 .prime-logo {
-  max-width: 16%;
+  width: 60px;
+  height: auto;
   margin-bottom: 10px;
 }
 
