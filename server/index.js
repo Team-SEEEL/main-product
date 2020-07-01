@@ -97,7 +97,6 @@ app.get('/api/photos', function(req, res) {
   }).catch((err) => console.log(err, 'err from app.get/api/mainProduct'));
 });
 
-
 // GET photos url
 app.get('/api/photosurls', function(req, res) {
   photos.find({}).select('photo_url')

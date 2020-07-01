@@ -6,7 +6,7 @@ var Schema = mongoose.Schema;
 // mainProduct Schema
 
 const mainProductSchema = new mongoose.Schema({
-  product_id: Schema.ObjectId,
+  product_id: Number, 
   answers: Number,
   category: String,
   company: String,
@@ -25,9 +25,9 @@ const mainProduct = mongoose.model('mainProduct', mainProductSchema);
 // photos Schema 
 
 const photosSchema = new mongoose.Schema({
-  photo_id: Schema.Types.ObjectId,
+  photo_id: Number,
   product_id: [
-    {type: mongoose.Schema.Types.ObjectId, ref: 'mainProduct'}
+    {type: Number, ref: 'mainProduct'}
   ],
   photo_url: String
 });

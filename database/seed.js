@@ -9,7 +9,7 @@ var Schema = mongoose.Schema;
 let seedMainProduct = function () {
     var promisearr = [];
 
-        for (var i = 0; i < 100; i++) {
+        for (var i = 0; i < 10; i++) {
 
             let randomAnswers = faker.random.number({
                 'min' : 10,
@@ -30,6 +30,7 @@ let seedMainProduct = function () {
             let randomAmazonChoice = faker.random.boolean() // true 
 
             let mainproduct = new mainProduct({
+                product_id: `${i}`,
                 answers: `${randomAnswers}`,
                 category: `${randomCategory}`,
                 company: `${randomCompany}`,
@@ -50,11 +51,25 @@ let seedMainProduct = function () {
 let seedPhotos = function() {
     var promisearr = [];
 
+    // FUNCTION TO MATCH PHOTO ID TO PRODUCT ID
+    let matchID = function(number) {
+    if (number === 0) {
+        return 0
+    }
+    let dividedNumber = number / 10;
+    let intendedNumber = Math.floor(dividedNumber);
+    return intendedNumber;
+}
+
     for (var j = 0; j < 100; j++) {
-        let randomPhotoUrl = faker.image.imageUrl(); // https://www.aws.photo.com
+        // let randomPhotoUrl = faker.image.imageUrl(); // https://www.aws.photo.com
+
+        let randomPhotoUrl = `https://loremflickr.com/500/400/products?random=${j}`
 
         let photostable = new photos({
-            photo_url: `${randomPhotoUrl}`
+            photo_id: j,
+            product_id: matchID(j),
+            photo_url: randomPhotoUrl
         }).save()
         promisearr.push(photostable)
     }
