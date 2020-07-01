@@ -26,9 +26,9 @@ const mainProduct = mongoose.model('mainProduct', mainProductSchema);
 
 const photosSchema = new mongoose.Schema({
   photo_id: Number,
-  product_id: [
+  product_id: 
     {type: Number, ref: 'mainProduct'}
-  ],
+  ,
   photo_url: String
 });
 

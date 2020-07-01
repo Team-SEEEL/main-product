@@ -66,9 +66,11 @@ let seedPhotos = function() {
 
         let randomPhotoUrl = `https://loremflickr.com/500/400/products?random=${j}`
 
+        let productID = matchID(j)
+
         let photostable = new photos({
             photo_id: j,
-            product_id: matchID(j),
+            product_id: productID,
             photo_url: randomPhotoUrl
         }).save()
         promisearr.push(photostable)

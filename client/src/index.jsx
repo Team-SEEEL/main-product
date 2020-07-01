@@ -42,8 +42,8 @@ class App extends React.Component {
     renderView() {
     }
 
-    getRating() {
-
+    getMainProducts() {
+      axios.get('/api/')
     }
   
     getPhotos() {
