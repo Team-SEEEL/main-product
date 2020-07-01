@@ -17,7 +17,7 @@ let seedMainProduct = function () {
             }); // 3
             let randomCategory = faker.commerce.department(); // Clothing
             let randomCompany = faker.company.companyName(); // Apple Inc.
-            let randomDescription = faker.image.abstract(); // image description
+            let randomDescription = faker.lorem.paragraph(); // image description
             let randomPrice = faker.commerce.price(); // $1.00
             let randomPrime = faker.random.boolean(); // true
             let randomRating = faker.random.number({

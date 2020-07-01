@@ -20,14 +20,18 @@ class App extends React.Component {
     constructor() {
       super();
       this.state = {
+        answers: 0,
+        description: '',
         isHovered: false,
         modalOpened: false,
         showingModal: false,
         photos: [],
+        prime: false,
         mainphoto: '',
         rating: 4.5,
         selectedoption: '',
-        selectValue: ''
+        selectValue: '',
+        title: ''
       }
       this.getPhotos = this.getPhotos.bind(this);
       this.hoverExit = this.hoverExit.bind(this);
@@ -43,20 +47,38 @@ class App extends React.Component {
     }
 
     getMainProducts() {
-      axios.get('/api/')
+      axios.get('/api/mainProduct').then((data) => {
+        let mainProductData = data.data;
+        // console.log(mainProductData, 'line 48')
+        let test = Math.floor(Math.random() * 10);
+        mainProductData = mainProductData.filter(element => element.product_id === test)
+        console.log(mainProductData, 'line 51')
+        this.setState({
+          answers: mainProductData[0].answers,
+          company: mainProductData[0].company,
+          description: mainProductData[0].description,
+          price: mainProductData[0].price,
+          prime: mainProductData[0].prime,
+          ratings: mainProductData[0].ratings,
+          title: mainProductData[0].title
+        })
+      })
     }
   
     getPhotos() {
-      axios.get('/api/photosurls').then((data) => {
+      axios.get('/api/photos').then((data) => {
         let photourldata = data.data;
+        console.log(photourldata, 'line 52')
         let photourlarray = [];
+        // makes a random number from 0 to 9
+        let test = Math.floor(Math.random() * 10);
+        photourldata = photourldata.filter(element => element.product_id === test)
         console.log(photourldata, "logging data from api photos call");
         // TODO: access string inside object
         photourldata.forEach(element => {photourlarray.push(element.photo_url)
         console.log(photourlarray, 'logging data from photourldata line 26')
         });
         // TODO: refactor filter method of getting correct urls
-        photourlarray = photourlarray.slice(102, 112)
           this.setState({
             photos: photourlarray
           });
@@ -113,6 +135,7 @@ class App extends React.Component {
   
     componentDidMount() {
       this.getPhotos();
+      this.getMainProducts();
       this.setState({
         mainPhoto: this.state.photos[0]
       })
@@ -136,15 +159,15 @@ class App extends React.Component {
             </div>
           </div>
           <div className="description">
-            <div className="product-title">Apple Airpods Pro</div>
-            <div className="company-title"><Company /></div>
+            <div className="product-title">{this.state.title}</div>
+            <div className="company-title"><Company company={this.state.company} /></div>
             <div className="ratings"><StarRatingComponent 
           starCount={5}
           value={rating}
-            /> 17,034 ratings | 987 answered questions</div>
+            /> {this.state.reviews} | {this.state.questions}</div>
             <hr />
             <div className="price">
-            <Price primeLogo={primeLogo} />
+            <Price price={this.state.price} prime={this.state.prime} primeLogo={primeLogo} />
             </div>
             <br></br>
             {/* <div className="options"><Options hoverOptionHandler={this.hoverOptionHandler}/></div>
@@ -155,11 +178,11 @@ class App extends React.Component {
             <br></br>
             <div className="shipping-details">Ships from and sold by Amazon.com</div>
             <br></br>
-            <div className="details"><Details /></div>
+            {/* <div className="details"><Details /></div> */}
             <hr />
             <br></br>
             <div className="about-item"><b><font size="15px">About This Item:</font></b>
-            <Description /></div>
+            <Description description={this.state.description}/></div>
           </div>
           <div className="buying-options">
             <div className="share">Share: <ShareButtons /></div>
