@@ -182,7 +182,7 @@ class App extends React.Component {
             <hr />
             <br></br>
             <div className="about-item"><b><font size="15px">About This Item:</font></b>
-            <Description description={this.state.description}/></div>
+            <Description description={this.state.description} /></div>
           </div>
           <div className="buying-options">
             <div className="share">Share: <ShareButtons /></div>

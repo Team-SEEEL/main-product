@@ -59,7 +59,7 @@ let seedPhotos = function() {
     let dividedNumber = number / 10;
     let intendedNumber = Math.floor(dividedNumber);
     return intendedNumber;
-}
+    }
 
     for (var j = 0; j < 100; j++) {
         // let randomPhotoUrl = faker.image.imageUrl(); // https://www.aws.photo.com
@@ -77,6 +77,37 @@ let seedPhotos = function() {
     }
     return Promise.all(promisearr).catch(err => console.log(err, 'error from seedPhotos'))
 }
+
+// // FUNCTION TO SEED PHOTOS
+// let seedPhotos = function() {
+//     var promisearr = [];
+
+//     // FUNCTION TO MATCH PHOTO ID TO PRODUCT ID
+//     let matchID = function(number) {
+//     if (number === 0) {
+//         return 0
+//     }
+//     let dividedNumber = number / 10;
+//     let intendedNumber = Math.floor(dividedNumber);
+//     return intendedNumber;
+// }
+
+//     for (var j = 0; j < 100; j++) {
+//         // let randomPhotoUrl = faker.image.imageUrl(); // https://www.aws.photo.com
+
+//         let randomPhotoUrl = `https://loremflickr.com/500/400/products?random=${j}`
+
+//         let productID = matchID(j)
+
+//         let photostable = new photos({
+//             photo_id: j,
+//             product_id: productID,
+//             photo_url: randomPhotoUrl
+//         }).save()
+//         promisearr.push(photostable)
+//     }
+//     return Promise.all(promisearr).catch(err => console.log(err, 'error from seedPhotos'))
+// }
 
 // DROP DB IF EXISTS
 mainProduct.db.dropDatabase(function(err, results) {

@@ -59,7 +59,6 @@ app.put('/api/photos', function(req, res) {
       }
     }
   })
-  
 });
 
 
