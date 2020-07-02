@@ -19,7 +19,6 @@ const mainProductSchema = new mongoose.Schema({
 
 const mainProduct = mongoose.model('mainProduct', mainProductSchema);
 
-
 // photos Schema 
 
 const photosSchema = new mongoose.Schema({
