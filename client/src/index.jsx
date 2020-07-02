@@ -47,12 +47,10 @@ class App extends React.Component {
     }
 
     getMainProducts() {
-      axios.get('/api/mainProduct').then((data) => {
+      let test = Math.floor(Math.random() * 10);
+      axios.get(`/api/mainProduct/${test}`).then((data) => {
         let mainProductData = data.data;
-        // console.log(mainProductData, 'line 48')
-        let test = Math.floor(Math.random() * 10);
-        mainProductData = mainProductData.filter(element => element.product_id === test)
-        console.log(mainProductData, 'line 51')
+        console.log(mainProductData, 'line 48')
         this.setState({
           answers: mainProductData[0].answers,
           company: mainProductData[0].company,
@@ -64,16 +62,13 @@ class App extends React.Component {
         })
       })
     }
-  
+
     getPhotos() {
-      axios.get('/api/photos').then((data) => {
+      let test = Math.floor(Math.random() * 10);
+      axios.get(`/api/photos/${test}`).then((data) => {
         let photourldata = data.data;
         console.log(photourldata, 'line 52')
         let photourlarray = [];
-        // makes a random number from 0 to 9
-        let test = Math.floor(Math.random() * 10);
-        photourldata = photourldata.filter(element => element.product_id === test)
-        console.log(photourldata, "logging data from api photos call");
         // TODO: access string inside object
         photourldata.forEach(element => {photourlarray.push(element.photo_url)
         console.log(photourlarray, 'logging data from photourldata line 26')
@@ -84,6 +79,26 @@ class App extends React.Component {
           });
       })
     }
+  
+    // getPhotos() {
+    //   axios.get('/api/photos').then((data) => {
+    //     let photourldata = data.data;
+    //     console.log(photourldata, 'line 52')
+    //     let photourlarray = [];
+    //     // makes a random number from 0 to 9
+    //     let test = Math.floor(Math.random() * 10);
+    //     photourldata = photourldata.filter(element => element.product_id === test)
+    //     console.log(photourldata, "logging data from api photos call");
+    //     // TODO: access string inside object
+    //     photourldata.forEach(element => {photourlarray.push(element.photo_url)
+    //     console.log(photourlarray, 'logging data from photourldata line 26')
+    //     });
+    //     // TODO: refactor filter method of getting correct urls
+    //       this.setState({
+    //         photos: photourlarray
+    //       });
+    //   })
+    // }
 
     handleModal(e) {
       console.log('we out here in handleModal, line 62')

@@ -1,10 +1,9 @@
 import React from 'react'; 
 
 const Price = (props) => {
-    let primeLogo=props.primeLogo
-    //TODO: replace this w/ actual price data
-    let price = props.price
-    let amazonCardPrice = Math.round(price / 6)
+    let primeLogo=props.primeLogo;
+    let price = props.price;
+    let amazonCardPrice = Math.round(price / 6);
 
     return (
         <div>

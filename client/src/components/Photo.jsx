@@ -1,11 +1,7 @@
 import React from 'react';
 
 const Photo = (props) => {
-    let currentPhoto = props.currentPhoto;
-    let hoverExit = props.hoverExit;
-    let isHovered = props.isHovered;
-    let photo = props.photo;
-    let hoverHandler = props.hoverHandler;
+    let { currentPhoto, hoverExit, isHovered, photo, hoverHandler } = props;
 
     let classPhotoName = isHovered ? "hovered-photo" : "single-photo" 
 

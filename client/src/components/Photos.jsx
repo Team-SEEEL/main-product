@@ -7,7 +7,6 @@ const Photos = (props) => {
     let isHovered = props.isHovered;
     let photos = props.photos;
     let hoverHandler = props.hoverHandler;
-    console.log(photos, 'line 6 from Photos.jsx')
 
     return (
     <div className="photos">

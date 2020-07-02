@@ -26,8 +26,6 @@ let seedMainProduct = function () {
                 }
             ); // 4
             let randomTitle = faker.commerce.productName(); // Swimming Pool
-            // let randomBestSeller = faker.random.boolean(); // false
-            let randomAmazonChoice = faker.random.boolean() // true 
 
             let mainproduct = new mainProduct({
                 product_id: `${i}`,
@@ -38,9 +36,7 @@ let seedMainProduct = function () {
                 price: `${randomPrice}`,
                 prime: `${randomPrime}`,
                 ratings: `${randomRating}`,
-                title: `${randomTitle}`,
-                // best_seller: `${randomBestSeller}`,
-                amazon_choice: `${randomAmazonChoice}`
+                title: `${randomTitle}`
             }).save()
             promisearr.push(mainproduct)
         }
@@ -61,53 +57,24 @@ let seedPhotos = function() {
     return intendedNumber;
     }
 
-    for (var j = 0; j < 100; j++) {
-        // let randomPhotoUrl = faker.image.imageUrl(); // https://www.aws.photo.com
-
-        let randomPhotoUrl = `https://loremflickr.com/500/400/products?random=${j}`
-
-        let productID = matchID(j)
-
-        let photostable = new photos({
-            photo_id: j,
-            product_id: productID,
-            photo_url: randomPhotoUrl
-        }).save()
-        promisearr.push(photostable)
+    for (var j = 0; j < 10; j++) {
+        let productID = j
+        
+        for (var k = 1; k < 10; k++) {
+            let photoProductID = k + 1;
+            let photoID = k;
+            let photoURL = `https://amazon-main-product-bucket.s3-us-west-1.amazonaws.com/main-product-${productID}/photo_${photoID}.jpg`
+    
+            let photostable = new photos({
+                photo_id: k,
+                product_id: productID,
+                photo_url: photoURL
+            }).save()
+            promisearr.push(photostable)
+        }
     }
     return Promise.all(promisearr).catch(err => console.log(err, 'error from seedPhotos'))
 }
-
-// // FUNCTION TO SEED PHOTOS
-// let seedPhotos = function() {
-//     var promisearr = [];
-
-//     // FUNCTION TO MATCH PHOTO ID TO PRODUCT ID
-//     let matchID = function(number) {
-//     if (number === 0) {
-//         return 0
-//     }
-//     let dividedNumber = number / 10;
-//     let intendedNumber = Math.floor(dividedNumber);
-//     return intendedNumber;
-// }
-
-//     for (var j = 0; j < 100; j++) {
-//         // let randomPhotoUrl = faker.image.imageUrl(); // https://www.aws.photo.com
-
-//         let randomPhotoUrl = `https://loremflickr.com/500/400/products?random=${j}`
-
-//         let productID = matchID(j)
-
-//         let photostable = new photos({
-//             photo_id: j,
-//             product_id: productID,
-//             photo_url: randomPhotoUrl
-//         }).save()
-//         promisearr.push(photostable)
-//     }
-//     return Promise.all(promisearr).catch(err => console.log(err, 'error from seedPhotos'))
-// }
 
 // DROP DB IF EXISTS
 mainProduct.db.dropDatabase(function(err, results) {

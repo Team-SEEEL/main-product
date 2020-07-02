@@ -14,9 +14,7 @@ const mainProductSchema = new mongoose.Schema({
   price: Number,
   prime: Boolean,
   ratings: Number,
-  title: String,
-  // best_seller: Boolean,
-  amazon_choice: Boolean
+  title: String
 });
 
 const mainProduct = mongoose.model('mainProduct', mainProductSchema);

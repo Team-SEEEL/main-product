@@ -23,6 +23,7 @@
     "babel-preset-react": "^6.23.0",
     "circleci": "^0.3.3",
     "faker": "^4.1.0",
+    "mongodb": "^3.5.9",
     "nodemon": "^2.0.4",
     "react-modal": "^3.11.2",
     "react-star-rating-component": "^1.4.1",

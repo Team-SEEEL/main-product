@@ -1,12 +1,7 @@
 import React from 'react';
 
 const MainPhoto = (props) => {
-    let handleModal = props.handleModal
-    let mainPhoto = props.mainPhoto;
-    let hideModal = props.hideModal;
-    let showModal = props.showModal;
-    let modalOpened = props.modalOpened;    
-    let showingModal = props.showingModal;
+    let {handleModal, mainPhoto, hideModal, showModal, modalOpened, showingModal} = props;
 
     const showHideClassName = showingModal ? "modal display-block" : "modal display-none"
     
