@@ -48,7 +48,7 @@ class App extends React.Component {
 
     getMainProducts() {
       let test = Math.floor(Math.random() * 10);
-      axios.get(`/api/mainProduct/${test}`).then((data) => {
+      axios.get(`/products/api/mainProduct/${test}`).then((data) => {
         let mainProductData = data.data;
         console.log(mainProductData, 'line 48')
         this.setState({
@@ -65,7 +65,7 @@ class App extends React.Component {
 
     getPhotos() {
       let test = Math.floor(Math.random() * 10);
-      axios.get(`/api/photos/${test}`).then((data) => {
+      axios.get(`/products/api/photos/${test}`).then((data) => {
         let photourldata = data.data;
         console.log(photourldata, 'line 52')
         let photourlarray = [];
