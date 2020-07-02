@@ -6,17 +6,15 @@ var Schema = mongoose.Schema;
 // mainProduct Schema
 
 const mainProductSchema = new mongoose.Schema({
-  product_id: Schema.ObjectId,
-  // answers: Number,
+  product_id: Number, 
+  answers: Number,
   category: String,
   company: String,
   description: String,
   price: Number,
   prime: Boolean,
   ratings: Number,
-  title: String,
-  best_seller: Boolean
-  // amazon_choice: Boolean
+  title: String
 });
 
 const mainProduct = mongoose.model('mainProduct', mainProductSchema);
@@ -24,12 +22,12 @@ const mainProduct = mongoose.model('mainProduct', mainProductSchema);
 // photos Schema 
 
 const photosSchema = new mongoose.Schema({
-  photo_id: Schema.Types.ObjectId,
-  product_id: [
-    {type: mongoose.Schema.Types.ObjectId, ref: 'mainProduct'}
-  ],
+  photo_id: Number,
+  product_id: 
+    {type: Number, ref: 'mainProduct'}
+  ,
   photo_url: String
-})
+});
 
 const photos = mongoose.model('photos', photosSchema);
 

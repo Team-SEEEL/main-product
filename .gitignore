@@ -1,1 +1,11 @@
 node_modules
+
+bundle.js
+
+s3_photoViewer
+
+s3_photoViewer.js
+
+server/s3_photoViewer.js
+
+client/dist/bundle.js
