@@ -87,7 +87,7 @@ mainProduct.db.dropDatabase(function(err, results) {
 
 // COMMAND TO SEED MAIN PRODUCTS TABLE
 const insertSampleProducts = function() {
-    mainProduct.create(seedMainProduct())
+    seedMainProduct()
         .then(() => db.close())
         .catch(err => console.log(err, 'err from insertSampleProducts'))
 };
@@ -96,7 +96,7 @@ insertSampleProducts();
 
 // COMMAND TO SEED PHOTOS TABLE
 const insertSamplePhotos = function() {
-    photos.create(seedPhotos())
+    seedPhotos()
         .then(() => db.close())
         .catch(err => console.log(err, 'err from insertSamplePhotos'))
 }
