@@ -8,8 +8,8 @@ const {photos} = require('../database/mainProduct.js');
 const app = express();
 const PORT = 3001;
 
-const s3 = require('./s3_photoViewer')
-const presignedGETURL = require('./s3_photoViewer')
+// const s3 = require('./s3_photoViewer')
+// const presignedGETURL = require('./s3_photoViewer')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -22,11 +22,11 @@ var bucketParams = {
   Bucket : 'amazon-main-product-bucket'
 };
 
-// this is a workaround to get the numbered routes to
-// work when doing clientside rendering of this component individually.
-app.get('products/api/:index([0-9]|[0-9][0-9])', (req, res) => {
-  res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-});
+// // this is a workaround to get the numbered routes to
+// // work when doing clientside rendering of this component individually.
+// app.get('products/api/:index([0-9]|[0-9][0-9])', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+// });
 
 // GET main product data
 app.get('/products/api/mainProduct', function(req, res) {
