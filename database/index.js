@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const mongoUri = 'mongodb://localhost/main-product';
+const mongoUri = 'mongodb://database/main-product';
 
 const db = mongoose.connect(mongoUri, {useMongoClient:true});
 

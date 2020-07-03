@@ -47,6 +47,12 @@ class App extends React.Component {
     }
 
     getMainProducts() {
+      const path = window.location.pathname.replace(`/`, ``)
+        // turn into number
+        // % 10 
+      let integer = parseInt(path, 10);
+      let productNum = integer % 10;
+
       let test = Math.floor(Math.random() * 10);
       axios.get(`/products/api/mainProduct/${test}`).then((data) => {
         let mainProductData = data.data;
