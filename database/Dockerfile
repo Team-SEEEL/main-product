@@ -1,12 +1,14 @@
-FROM node:12-alpine
+# FROM node:12-alpine
 
-WORKDIR /src/app/database
+# WORKDIR /src/app/database
 
-RUN npm init -y 
+# RUN npm init -y 
 
-RUN npm i mongoose faker express 
+# RUN npm i mongoose faker express 
 
-COPY . .
+# RUN npm i mongodb@2.2.5 --save
 
-CMD ["node", "seed"]
+# COPY . .
+
+# CMD ["node", "seed"]
 
