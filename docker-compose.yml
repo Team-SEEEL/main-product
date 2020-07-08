@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  server:
+    build: .
+    image: spencerng94/main-product:server
+    volumes: 
+      - .:/src/app
+      # - /src/app/node_modules
+    depends_on:
+      - 'database'
+    ports: 
+      - '4000:3001'
+    command: npm start
+    # command: 'npm start & npm run db:setup'
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=database
+      - PORT=3001
+      - HOST=localhost
+    restart: always
+
+  seed:
+    build: ./database
+    image: spencerng94/main-product:seed
+    depends_on:
+      - database
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=database
+    restart: on-failure
+
+  database:
+    container_name: database
+    image: mongo:latest
+    restart: always 
+    

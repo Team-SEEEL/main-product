@@ -8,8 +8,8 @@ const {photos} = require('../database/mainProduct.js');
 const app = express();
 const PORT = 3001;
 
-const s3 = require('./s3_photoViewer')
-const presignedGETURL = require('./s3_photoViewer')
+// const s3 = require('./s3_photoViewer')
+// const presignedGETURL = require('./s3_photoViewer')
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -21,6 +21,12 @@ app.use(express.static(__dirname + '/../client/dist'));
 var bucketParams = {
   Bucket : 'amazon-main-product-bucket'
 };
+
+// // this is a workaround to get the numbered routes to
+// // work when doing clientside rendering of this component individually.
+// app.get('products/api/:index([0-9]|[0-9][0-9])', (req, res) => {
+//   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+// });
 
 // GET main product data
 app.get('/products/api/mainProduct', function(req, res) {
@@ -70,6 +76,10 @@ app.get('/products/api/photos/:productId', function(req, res) {
 //       res.json(data);
 //   }).catch((err) => console.log(err, 'err from app.get/products/api/mainProduct'));
 // });
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
+});
 
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);

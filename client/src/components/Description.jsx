@@ -6,6 +6,7 @@ let description = props.description
 
 return (
     <div className="description">
+      <br></br>
         {description}
     </div>
   )

@@ -1,4 +1,9 @@
 import React from 'react';
+import ModalPhoto from './ModalPhoto.jsx'
+
+const outerWrapper = {
+    // filter: 'blur(4px)'
+}
 
 const backdropStyle = {
     position: 'fixed',
@@ -13,7 +18,7 @@ const backdropStyle = {
 const modalStyle = {
     backgroundColor: '#fff',
     borderRadius: 5,
-    maxWidth: 500,
+    maxWidth: 850,
     minHeight: 300,
     margin: '0 auto',
     padding: 30,
@@ -22,30 +27,73 @@ const modalStyle = {
 
 const footerStyle = {
     position: 'absolute',
-    bottom: 20
+    bottom: 10
 }
 
-class Modal extends React.Component {
 
+class Modal extends React.Component {
+    
     onClose(e) {
         this.props.onClose && this.props.onClose(e);
     }
-
+    
     render() {
+        let currentPhoto = this.props.currentPhoto;
+        let hoverExit = this.props.hoverExit;
+        let isHovered = this.props.isHovered;
+        let photos = this.props.photos;
+        let hoverHandler = this.props.hoverHandler;
+        let modalHoverHandler = this.props.modalHoverHandler;
+
 
         if (!this.props.showingModal) {
             return null;
         }
+
+        if (this.props.modalPhoto === 0) {
+            let modalPhoto = this.props.mainPhoto;
+        } else {
+            modalPhoto = this.props.modalPhoto;
+        }
+
+
         return (
-            <div style={backdropStyle}>
-                <div style={modalStyle}>
-                    {this.props.children}
-                    <img className='modal-image' src={this.props.mainPhoto}/>
-                <div style={footerStyle}>
-                    <button onClick={(e) => {this.onClose(e)}}>
-                        Close
-                    </button>
-                </div>
+            <div className='outer-wrapper' style={outerWrapper}>
+                <div className='modal-wrapper' style={backdropStyle}>
+                    <div className = 'modal-wrapper-center' style={modalStyle}>
+                        {this.props.children}
+                        <div className="flex-container">
+                            <div className="modal-image-div">
+                                <img className='modal-image' src={this.props.mainPhoto}/>
+                            </div>
+                            <div className='modal-product-title'>{this.props.title}
+                                <br></br>
+                                <br></br>
+                                <div className='modal-description'>{this.props.description}</div>
+                            </div>
+                        </div>
+                            <div className="flex-container">
+                            <div className="modal-photos">
+                                {/* <ul> */}
+                                <div className="flex-container">
+                                        {
+                                        photos.map((photo) => {
+                                            return <ModalPhoto modalHoverHandler={modalHoverHandler} currentPhoto={currentPhoto} hoverHandler={hoverHandler} hoverExit={hoverExit} isHovered={isHovered} photo={photo} />
+                                        })
+                                        }
+                                </div>
+                                    {/* </ul> */}
+                            </div>
+                        </div>
+                
+                            <div style={footerStyle}>
+                                <div className='modal-close-button'>
+                                    <button onClick={(e) => {this.onClose(e)}}>
+                                        Close
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
                 </div>
             </div>
         )
