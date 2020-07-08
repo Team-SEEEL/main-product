@@ -3,26 +3,53 @@
 }
 
 .product-title {
-  font-size: 21px;
+  font-size: 23px;
   font-family: Arial;
-  font-weight: 400;
+  font-weight: 550;
+}
+
+.modal-product-title {
+  font-size: 23px;
+  font-family: Arial;
+  font-weight: 550;
+  margin-left: 25px;
 }
 
 .single-photo {
   border: 1px solid black;
   max-width: 50px;
-  height: auto;
+  width: 50px;
+  max-height: 50px;
+  height: 50px;
   margin: 10px, 10px;
   object-fit: cover;
   float: left;
   margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.single-modal-photo {
+  border: 1px solid black;
+  margin-right: 3.5px;
+  max-width: 50px;
+  width: 50px;
+  max-height: 50px;
+  height: 50px;
+  margin: 10px, 10px;
+  object-fit: cover;
+  float: none;
+  margin-bottom: 12px;
+  border-radius: 4px;
+  margin-top: 5px;
 }
 
 .hovered-photo {
   box-shadow: 0px 0px 1.5px 1.5px #e77600;;
   border: 1px solid #e77600;
   max-width: 50px;
-  height: auto;
+  height: 50px;
+  max-height: 50px;
+  width: 50px;
   margin: 10px, 10px;
   object-fit: cover;
   float: left;
@@ -35,11 +62,30 @@
   display: flex;
 }
 
+.modal-photos {
+  /* flex-shrink: 3; */
+  max-width: 10%;
+  display: flex;
+}
+
+.modal-photo {
+  margin-top: 5px;
+  margin-right: 3.5px;
+}
+
 .description {
   font-size: 13px;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   max-width: 90%;
   margin-right: 40px;
+}
+
+.modal-description {
+  margin-top: 10px;
+  font-size: 16px;
+  /* flex-grow: 1; */
+  max-width: 90%;
+  /* margin-right: 40px; */
 }
 
 /* .single-photo {
@@ -47,9 +93,14 @@
 } */
 
 .prime-logo {
-  width: 60px;
-  height: auto;
+  width: auto;
+  height: 27px;
   margin-bottom: 10px;
+}
+
+.prime-logo-2 {
+  width: auto;
+  height: 27px;
 }
 
 .add-to-cart-button {
@@ -61,14 +112,17 @@
   flex-shrink: 2;
   margin: 50px, 50px;
   margin-right: 25px;
-  margin-left: 60px;
+  margin-left: 25px;
   opacity: 1.0;
   transition: opacity 0.5s;
   max-width: 522px;
   width: 522px;
+  max-height: 446px;
+  height: 446px;
+  border-radius: 8px;
 }
 
-.add-to-dash, .in-stock, .company, .company-title, .ratings, .price, .options, .brand, .about-item, .connection, .model-name, .color, .material, .share {
+.add-to-dash, .in-stock, .company, .company-title, .ratings, .buying-item-price, .price, .options, .brand, .about-item, .connection, .model-name, .color, .material, .share {
   font-size: 16px;
   font-family: Arial;
 }
@@ -85,8 +139,11 @@
 
 .buying-options {
   display: block;
-  /* flex-shrink: 1.5; */
+  width: 400px;
+  height: auto;
+  /* flex-grow: 3; */
   border: 1px solid black;
+  border-radius: 8px;
 }
 
 .share {
@@ -94,16 +151,17 @@
   margin: 0 auto;
 }
 
-.quantity-menu, .add-to-cart, .add-to-list {
+.quantity-menu, .free-returns, .buying-shipping-details, .add-to-cart, .add-to-list, .buying-item-price {
   margin-left: 10px;
+  /* margin: auto; */
 }
 
-.item-price {
+.item-price, .buying-item-price {
   color: #B12704!important;
   font-size: 17px;
 }
 
-.company-title, .price, .shipping-details, .free-delivery {
+.company-title, .price, .shipping-details, .free-delivery, .free-returns {
   font-size: 13px;
   font-family: Arial;
 }
@@ -123,12 +181,25 @@
   line-height: 1.255!important;
 }
 
-.main-state-photo, .modal-image {
+.main-state-photo {
   max-width: 522px;
+  width: 552px;
   max-height: 446px;
+  height: auto;
+  border-radius: 8px;
+  border: 1px solid black;
 }
 
-.company-container, .item-price-container {
+.modal-image {
+  max-width: 522px;
+  width: 552px;
+  max-height: 446px;
+  height: 446px;
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.company-container, .item-price-container, .buying-item-price-container {
   /* margin: 2px 10px; */
   display: flex;
 }
@@ -138,7 +209,7 @@
   flex-basis : 10%;
 } 
 
-.item-price-colon, .item-price {
+.item-price-colon, .item-price, .free-returns {
   margin-top: 7.25px;
 }
 
@@ -147,14 +218,41 @@
   color: rgb(0, 102, 192);
 }
 
-/* .display-block {
-  display: block;
-}
-
-.display-none {
-  display: none;
-} */
-
 .main-photo-div {
   max-width: 522px;
+}
+
+.modal-photo-div {
+  max-width: 522px;
+}
+
+.ratings, .modal-wrapper {
+  z-index: 1;
+}
+
+.ratings {
+  margin-top: 2px;
+}
+
+.modal-image {
+  z-index: 2;
+}
+
+.company {
+  flex-grow: 3
+}
+
+.modal-wrapper {
+  backdrop-filter: blur(3px);
+}
+
+.buying-shipping-details {
+  font-size: 13px;
+  font-family: Arial;
+}
+
+.modal-close-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

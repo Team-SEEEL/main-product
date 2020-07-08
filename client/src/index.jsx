@@ -4,6 +4,7 @@ import Price from './components/Price.jsx'
 import Photos from './components/Photos.jsx'
 import Description from './components/Description.jsx'
 // import Options from './components/Options.jsx'
+import BuyingPrice from './components/BuyingPrice.jsx'
 import Company from './components/Company.jsx'
 import Details from './components/Details.jsx'
 import Modal from './components/Modal.jsx'
@@ -16,6 +17,8 @@ import StarRatingComponent from 'react-star-rating-component';
 import axios from 'axios';
 import primeLogo from '../dist/primelogo.png'
  
+
+
 class App extends React.Component {
     constructor() {
       super();
@@ -28,7 +31,9 @@ class App extends React.Component {
         photos: [],
         prime: false,
         mainphoto: '',
+        modalphoto: 0,
         rating: 4.5,
+        ratings: 0,
         selectedoption: '',
         selectValue: '',
         title: ''
@@ -41,6 +46,7 @@ class App extends React.Component {
       this.handleQuantityChange = this.handleQuantityChange.bind(this);
       this.showModal = this.showModal.bind(this);
       this.hideModal = this.hideModal.bind(this);
+      this.modalHoverHandler = this.modalHoverHandler.bind(this)
     }
   
     renderView() {
@@ -52,8 +58,8 @@ class App extends React.Component {
         // % 10 
       let integer = parseInt(path, 10);
       let productNum = integer % 10;
-
       let test = Math.floor(Math.random() * 10);
+
       axios.get(`/products/api/mainProduct/${test}`).then((data) => {
         let mainProductData = data.data;
         console.log(mainProductData, 'line 48')
@@ -80,34 +86,16 @@ class App extends React.Component {
         console.log(photourlarray, 'logging data from photourldata line 26')
         });
         // TODO: refactor filter method of getting correct urls
-          this.setState({
-            photos: photourlarray
-          });
+        this.setState({
+          photos: photourlarray,
+          mainphoto: photourlarray[0]
+        });
       })
+      console.log(this.state, 'line 87')
     }
-  
-    // getPhotos() {
-    //   axios.get('/api/photos').then((data) => {
-    //     let photourldata = data.data;
-    //     console.log(photourldata, 'line 52')
-    //     let photourlarray = [];
-    //     // makes a random number from 0 to 9
-    //     let test = Math.floor(Math.random() * 10);
-    //     photourldata = photourldata.filter(element => element.product_id === test)
-    //     console.log(photourldata, "logging data from api photos call");
-    //     // TODO: access string inside object
-    //     photourldata.forEach(element => {photourlarray.push(element.photo_url)
-    //     console.log(photourlarray, 'logging data from photourldata line 26')
-    //     });
-    //     // TODO: refactor filter method of getting correct urls
-    //       this.setState({
-    //         photos: photourlarray
-    //       });
-    //   })
-    // }
+
 
     handleModal(e) {
-      console.log('we out here in handleModal, line 62')
       this.setState({
         isHovered: true,
         modalOpened: true
@@ -136,6 +124,15 @@ class App extends React.Component {
       console.log(this.state.mainphoto, 'line 62')
     }
 
+    modalHoverHandler(e) {
+      let currentPhoto = e.currentTarget.src
+      this.setState({
+        isHovered: true,
+        // mainphoto: currentPhoto
+      })
+      console.log(this.state.mainphoto, 'line 62')
+    }
+
     hoverExit() {
       this.setState({
         isHovered: false
@@ -157,9 +154,6 @@ class App extends React.Component {
     componentDidMount() {
       this.getPhotos();
       this.getMainProducts();
-      this.setState({
-        mainPhoto: this.state.photos[0]
-      })
       if (this.state.isHovered) {
         this.showModal()
       }
@@ -175,17 +169,18 @@ class App extends React.Component {
           <div className='main-photo'>
             <div className='main-photo-div'>
               <MainPhoto showingModal={this.state.showingModal} hideModal={this.hideModal} showModal={this.showModal} modalOpened={this.state.modalOpened} mainPhoto={this.state.mainphoto} handleModal={this.handleModal}/>
-              <Modal mainPhoto={this.state.mainphoto} onClose={this.showModal} showingModal={this.state.showingModal}>
+              <Modal modalPhoto={this.state.modalphoto} modalHoverHandler={this.modalHoverHandler} description={this.state.description} currentPhoto={this.state.mainphoto} hoverHandler={this.hoverHandler} hoverExit={this.hoverExit} isHovered={this.state.isHovered} photos={this.state.photos} title={this.state.title} mainPhoto={this.state.mainphoto} onClose={this.showModal} showingModal={this.state.showingModal}>
               </Modal>
             </div>
           </div>
           <div className="description">
             <div className="product-title">{this.state.title}</div>
+            <br></br>
             <div className="company-title"><Company company={this.state.company} /></div>
             <div className="ratings"><StarRatingComponent 
           starCount={5}
           value={rating}
-            /> {this.state.reviews} | {this.state.questions}</div>
+            /> {this.state.ratings} ratings | {this.state.answers} answers </div>
             <hr />
             <div className="price">
             <Price price={this.state.price} prime={this.state.prime} primeLogo={primeLogo} />
@@ -208,10 +203,15 @@ class App extends React.Component {
           <div className="buying-options">
             <div className="share">Share: <ShareButtons /></div>
             <hr />
+            <div className="buying-options-price"> 
+            <BuyingPrice price={this.state.price} prime={this.state.prime} primeLogo={primeLogo}/>
+            </div>
             <br></br>
             <div className="quantity-menu"> <QuantityMenu selectValue={this.state.selectValue} handleQuantityChange={this.handleQuantityChange}/> </div>
             <br></br>
             <div className="add-to-cart"><AddToCart /></div>
+            <br></br>
+            <div className="buying-shipping-details">Ships from and sold by Amazon.com</div>
             <hr />
             <br></br>
             <div className="add-to-list"><AddToList /></div>

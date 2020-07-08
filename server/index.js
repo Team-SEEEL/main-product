@@ -77,6 +77,10 @@ app.get('/products/api/photos/:productId', function(req, res) {
 //   }).catch((err) => console.log(err, 'err from app.get/products/api/mainProduct'));
 // });
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '/../client/dist/index.html'));
+});
+
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
 });
