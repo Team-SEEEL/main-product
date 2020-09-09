@@ -22,12 +22,6 @@ var bucketParams = {
   Bucket : 'amazon-main-product-bucket'
 };
 
-// // this is a workaround to get the numbered routes to
-// // work when doing clientside rendering of this component individually.
-// app.get('products/api/:index([0-9]|[0-9][0-9])', (req, res) => {
-//   res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-// });
-
 // GET main product data
 app.get('/products/api/mainProduct', function(req, res) {
   mainProduct.find()
@@ -67,15 +61,6 @@ app.get('/products/api/photos/:productId', function(req, res) {
       res.json(data);
   }).catch((err) => console.log(err, 'err from app.get/products/api/mainProduct'));
 });
-
-// // GET photos url
-// app.get('/products/api/photosurls', function(req, res) {
-//   photos.find({}).select('photo_url')
-//     .then((data) => {
-//       console.log(data, "logging mainProduct data");
-//       res.json(data);
-//   }).catch((err) => console.log(err, 'err from app.get/products/api/mainProduct'));
-// });
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '/../client/dist/index.html'));

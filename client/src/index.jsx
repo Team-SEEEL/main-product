@@ -52,15 +52,13 @@ class App extends React.Component {
     renderView() {
     }
 
-    getMainProducts() {
+    getMainProducts(numTest) {
       const path = window.location.pathname.replace(`/`, ``)
         // turn into number
         // % 10 
       let integer = parseInt(path, 10);
       let productNum = integer % 10;
-      let test = Math.floor(Math.random() * 10);
-
-      axios.get(`/products/api/mainProduct/${test}`).then((data) => {
+      axios.get(`/products/api/mainProduct/${numTest}`).then((data) => {
         let mainProductData = data.data;
         console.log(mainProductData, 'line 48')
         this.setState({
@@ -75,9 +73,11 @@ class App extends React.Component {
       })
     }
 
-    getPhotos() {
-      let test = Math.floor(Math.random() * 10);
-      axios.get(`/products/api/photos/${test}`).then((data) => {
+    getPhotos(numTest) {
+      // if (numTest === null) {
+      //   numTest = Math.floor(Math.random() * 10);
+      // }
+      axios.get(`/products/api/photos/${numTest}`).then((data) => {
         let photourldata = data.data;
         console.log(photourldata, 'line 52')
         let photourlarray = [];
@@ -152,8 +152,14 @@ class App extends React.Component {
     }
   
     componentDidMount() {
-      this.getPhotos();
-      this.getMainProducts();
+      const path = window.location.pathname.replace('/', '');
+      console.log(path, 'line 156')
+      if (path === "") {
+        path = 1
+      }
+      const index = parseInt(path);
+      this.getPhotos(index);
+      this.getMainProducts(index);
       if (this.state.isHovered) {
         this.showModal()
       }

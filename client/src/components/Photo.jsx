@@ -6,7 +6,7 @@ const Photo = (props) => {
     let classPhotoName = isHovered ? "hovered-photo" : "single-photo" 
 
     if (currentPhoto === photo) {
-        return (
+        return (N
             <div className="photo">
                 <img className={classPhotoName} src={photo} onMouseLeave={hoverExit} onMouseEnter={hoverHandler}/>
             </div> 
