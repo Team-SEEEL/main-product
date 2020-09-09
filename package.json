@@ -5,7 +5,8 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "start": "nodemon server/index.js",
+    "start": "node server/index.js",
+    "startServer": "nodemon server/index.js",
     "dev:react": "webpack --config webpack.common.js -d --watch",
     "db:setup": "node database/seed.js",
     "test": "jest",
