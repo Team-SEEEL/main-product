@@ -6,7 +6,7 @@ const {mainProduct} = require('../database/mainProduct.js');
 const {photos} = require('../database/mainProduct.js');
 
 const app = express();
-const PORT = 3001;
+const PORT = 5000;
 
 // const s3 = require('./s3_photoViewer')
 // const presignedGETURL = require('./s3_photoViewer')
