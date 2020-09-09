@@ -16,6 +16,7 @@ describe('<App /> rendering', () => {
 configure({ adapter: new Adapter() });
 
 describe('A suite', function () {
+    
     it('Should return a div element', () => {
         const wrapper = shallow(<App />);
         expect(wrapper.type()).toEqual('div');
